@@ -149,12 +149,20 @@ public class Gmail {
             return API.executeRequest(APIRequest: API.usersMessages.get(userID: userID, id: id).request, headers: defaultHeadersWithAuth, requestBody: nil, decodingType: Message.self)
         }
         
+        public static func get(userID: String, id: String) async -> Message? {
+            return await API.executeRequest(APIRequest: API.usersMessages.get(userID: userID, id: id).request, headers: defaultHeadersWithAuth, requestBody: nil, decodingType: Message.self)
+        }
+        
     }
     
     public class UsersThreads {
         
         public static func get(userID: String, id: String) -> AnyPublisher<MailThread, Error> {
             return API.executeRequest(APIRequest: API.usersThreads.get(userID: userID, id: id).request, headers: defaultHeadersWithAuth, requestBody: nil, decodingType: MailThread.self)
+        }
+        
+        public static func get(userID: String, id: String) async -> MailThread? {
+            return await API.executeRequest(APIRequest: API.usersThreads.get(userID: userID, id: id).request, headers: defaultHeadersWithAuth, requestBody: nil, decodingType: MailThread.self)
         }
         
         public static func list(userID: String, maxResults: Int?, pageToken: String?, query: String?, labelIDs: String?, includeSpamTrash: Bool?) -> AnyPublisher<ThreadList, Error> {
